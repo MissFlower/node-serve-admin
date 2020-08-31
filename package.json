@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "eslint && nodemon --exec babel-node app.js --presets=@babel/preset-env"
+    "dev": "nodemon --exec babel-node app.js --presets=@babel/preset-env"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -17,11 +17,21 @@
     "@babel/core": "^7.11.4",
     "@babel/node": "^7.10.5",
     "@babel/preset-env": "^7.11.0",
+    "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
-    "eslint": "^7.7.0",
+    "eslint": "^6.8.0",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MissFlower/node-serve-admin.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/MissFlower/node-serve-admin/issues"
+  },
+  "homepage": "https://github.com/MissFlower/node-serve-admin#readme"
 }
