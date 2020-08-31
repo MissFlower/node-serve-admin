@@ -1,3 +1,11 @@
+/*
+ * @Description: 
+ * @Version: 0.1.0
+ * @Autor: AiDongYang
+ * @Date: 2020-08-20 10:06:47
+ * @LastEditors: AiDongYang
+ * @LastEditTime: 2020-08-31 18:05:06
+ */
 // 引入Mongoose包
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
@@ -5,6 +13,9 @@ const Schema = mongoose.Schema
 mongoose.connect('mongodb://localhost/test', {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
+})
+mongoose.connection.on('connected',function(){
+	console.log('mongo connect success')
 })
 // 设计集合结构(表结构)
 const userSchema = new Schema({
@@ -43,6 +54,7 @@ const user = new User({
 // 		console.log(res)
 // 	}
 // })
+
 // 查询所有
 User.find((err, res) => {
 	if (err) {
@@ -87,4 +99,64 @@ User.find((err, res) => {
 // 	}
 // })
 
-module.exports = User
+// 创建用户
+export function createUser({ username, password, email }) {
+	const user = new User({
+		username,
+		password,
+		email
+	})
+	user.save((err, res) => {
+		if (err) {
+			res.send({
+				code: 500,
+				message: '系统错误, 用户创建失败!',
+				data: null
+			})
+		} else {
+			res.send({
+				code: 200,
+				message: '用户创建成功!'
+			})
+		}
+	})
+}
+
+// 删除用户
+export function deleteUser({ id  }) {
+	User.remove({ id }, (err, res) => {
+		if (err) {
+			res.send({
+				code: 500,
+				message: '系统错误, 用户删除失败!',
+				data: null
+			})
+		} else {
+			res.send({
+				code: 200,
+				message: '用户删除成功!'
+			})
+		}
+	})
+}
+
+// 查找用户
+export function findUser({ id }) {
+	User.findUserById({ id }, (err, res) => {
+		if (err) {
+			res.send({
+				code: 500,
+				message: '系统错误, 用户查找失败!',
+				data: null
+			})
+		} else {
+			res.send({
+				code: 200,
+				message: '查找成功',
+				data: res
+			})
+		}
+	})
+}
+// module.exports = USER
+// export default USER

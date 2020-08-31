@@ -3,13 +3,24 @@
   "version": "1.0.0",
   "description": "express测试",
   "main": "app.js",
+  "scripts": {
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "eslint && nodemon --exec babel-node app.js --presets=@babel/preset-env"
+  },
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1"
   },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.11.4",
+    "@babel/node": "^7.10.5",
+    "@babel/preset-env": "^7.11.0",
+    "babel-loader": "^8.1.0",
+    "eslint": "^7.7.0",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
   },
   "author": "",
   "license": "ISC"

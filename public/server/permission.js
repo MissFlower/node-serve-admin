@@ -3,8 +3,8 @@
  * @version: 
  * @Author: DoveyLoveyCora
  * @Date: 2020-08-16 10:30:28
- * @LastEditors: DoveyLoveyCora
- * @LastEditTime: 2020-08-16 23:21:06
+ * @LastEditors: AiDongYang
+ * @LastEditTime: 2020-08-31 18:10:46
  */
 const userInfo = {
   userName: 'DoveyLoveyCora',
@@ -49,4 +49,5 @@ const userInfo = {
     }
   ]
 }
-module.exports = userInfo
+export default userInfo
+// module.exports = userInfo
