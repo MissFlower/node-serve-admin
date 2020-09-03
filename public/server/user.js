@@ -1,7 +1,7 @@
 /*
  * @Description:
  * @Version: 0.1.0
- * @Autor: AiDongYang
+ * @Author: AiDongYang
  * @Date: 2020-08-20 10:06:47
  * @LastEditors: AiDongYang
  * @LastEditTime: 2020-09-03 16:09:08
@@ -55,13 +55,13 @@ const User = mongoose.model('User', userSchema)
 // })
 
 // 查询所有
-User.find((err, res) => {
-  if (err) {
-    console.log('查询失败')
-  } else {
-    console.log(res)
-  }
-})
+// User.find((err, res) => {
+//   if (err) {
+//     console.log('查询失败')
+//   } else {
+//     console.log(res)
+//   }
+// })
 // 按条件查询
 // find拿到的数据放到一个数组里 findOne只查询找到的第一个并返回一个对象 查询不到返回null
 // User.find(
@@ -140,24 +140,8 @@ export function deleteUser({ id }) {
 }
 
 // 查找用户
-export function findUser({ id }) {
-  User.findUserById({ id }, (err, res) => {
-    if (err) {
-      // res.send({
-      //   code: 500,
-      //   message: '系统错误, 用户查找失败!',
-      //   data: null
-      // })
-      console.log(err)
-    } else {
-      console.log(res)
-      // res.send({
-      //   code: 200,
-      //   message: '查找成功',
-      //   data: res
-      // })
-    }
-  })
+export function findUser({ username }) {
+  return User.find({ username })
 }
 // module.exports = USER
 // export default USER

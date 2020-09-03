@@ -23,6 +23,16 @@ const app = express()
 
 app.use('/public', express.static('./public/'))
 
+// post 参数解析
+const bodyParser = require('body-parser')
+// 解析 application/json
+const jsonParser = bodyParser.json()
+// 解析 application/x-www-form-urlencoded
+const urlencodedParser = bodyParser.urlencoded({ extended: false })
+
+app.use(jsonParser)
+app.use(urlencodedParser)
+
 app.use(router)
 
 // 404 处理 所要未处理的请求路径都会在这里处理
