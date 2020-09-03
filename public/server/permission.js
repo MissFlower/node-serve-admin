@@ -1,10 +1,10 @@
 /*
- * @Descripttion: 
- * @version: 
+ * @Descripttion: 权限文件
+ * @version: 1.0.0
  * @Author: DoveyLoveyCora
  * @Date: 2020-08-16 10:30:28
  * @LastEditors: AiDongYang
- * @LastEditTime: 2020-08-31 18:10:46
+ * @LastEditTime: 2020-09-01 14:19:54
  */
 const userInfo = {
   userName: 'DoveyLoveyCora',
