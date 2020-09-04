@@ -3,8 +3,8 @@
  * @version:
  * @Author: DoveyLoveyCora
  * @Date: 2020-07-20 20:30:00
- * @LastEditors: DoveyLoveyCora
- * @LastEditTime: 2020-09-01 00:35:59
+ * @LastEditors: AiDongYang
+ * @LastEditTime: 2020-09-04 13:14:37
  */
 const express = require('express')
 const router = require('./router')
@@ -39,10 +39,6 @@ app.use(router)
 app.use(function(req, res) {
   res.send('404暂无页面')
 })
-
-// const User = require('./public/server/user')
-
-// app.use(User)
 
 app.listen(3000, () => {
   console.log('express is running ...')
