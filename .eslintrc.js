@@ -2,7 +2,7 @@ module.exports = {
   root: true,
   parserOptions: {
     parser: 'babel-eslint',
-    ecmaVersion: 8,
+    ecmaVersion: 8, // https://www.cnblogs.com/danker/p/12458659.html 不配置导致箭头函数和async await不能同时使用
     sourceType: 'module'
   },
   env: {

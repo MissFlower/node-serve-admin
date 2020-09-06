@@ -14,7 +14,13 @@ import userInfo from '../public/server/permission'
 import * as user from '../public/server/user'
 
 userRouter.get('/user/info', (request, response) => {
-  response.send(JSON.stringify(userInfo))
+  response.send({
+    code: '000000',
+    data: {
+      userInfo: userInfo
+    },
+    message: '获取用户信息成功!'
+  })
 })
 
 userRouter.post('/login', async(request, response) => {
