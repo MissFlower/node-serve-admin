@@ -60,10 +60,10 @@ userRouter.post('/register', async(request, response) => {
   const { username, password } = request.body
   // 是否存在该用户
   const data = await user.findUser({ username })
-  console.log(data[0]['_id'])
   if (!data.length) {
     // 用户不存在 进行注册
     const { _id } = await user.createUser({ username, password })
+    console.log(_id)
     if (_id) {
       response.send({
         code: '000000',

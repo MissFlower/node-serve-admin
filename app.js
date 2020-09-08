@@ -34,14 +34,15 @@ app.use(jsonParser)
 app.use(urlencodedParser)
 
 // 引入express-jwt
-var expressJWT = require('express-jwt')
-
-var secretOrPrivateKey = 'hello  BigManing' // 加密token 校验token时要使用
-app.use(expressJWT({
-  secret: secretOrPrivateKey
-}).unless({
-  path: ['/getToken'] // 除了这个地址，其他的URL都需要验证
-}))
+// const expressJWT = require('express-jwt')
+//
+// const secretOrPrivateKey = 'hello  BigManing' // 加密token 校验token时要使用
+// app.use(expressJWT({
+//   secret: secretOrPrivateKey,
+//   algorithms: ['HS256']
+// }).unless({
+//   path: ['/getToken'] // 除了这个地址，其他的URL都需要验证
+// }))
 
 app.use(router)
 
@@ -50,6 +51,6 @@ app.use(function(req, res) {
   res.send('404暂无页面')
 })
 
-app.listen(3000, () => {
+app.listen(4000, () => {
   console.log('express is running ...')
 })
