@@ -4,7 +4,7 @@
  * @Author: AiDongYang
  * @Date: 2020-08-20 10:06:47
  * @LastEditors: AiDongYang
- * @LastEditTime: 2020-09-07 18:24:55
+ * @LastEditTime: 2020-09-08 16:45:42
  */
 // 引入Mongoose包
 const mongoose = require('mongoose')
@@ -99,26 +99,27 @@ const User = mongoose.model('User', userSchema)
 // })
 
 // 创建用户
-export function createUser({ username, password, email }) {
+export function createUser({ username, password, email = '' }) {
   const user = new User({
     username,
     password,
     email
   })
-  user.save((err, res) => {
-    if (err) {
-      res.send({
-        code: 500,
-        message: '系统错误, 用户创建失败!',
-        data: null
-      })
-    } else {
-      res.send({
-        code: 200,
-        message: '用户创建成功!'
-      })
-    }
-  })
+  return user.save()
+  // user.save((err, res) => {
+  //   if (err) {
+  //     res.send({
+  //       code: 500,
+  //       message: '系统错误, 用户创建失败!',
+  //       data: null
+  //     })
+  //   } else {
+  //     res.send({
+  //       code: 200,
+  //       message: '用户创建成功!'
+  //     })
+  //   }
+  // })
 }
 
 // 删除用户

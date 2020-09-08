@@ -4,7 +4,7 @@
  * @Author: DoveyLoveyCora
  * @Date: 2020-07-20 20:30:00
  * @LastEditors: AiDongYang
- * @LastEditTime: 2020-09-04 13:14:37
+ * @LastEditTime: 2020-09-08 18:04:25
  */
 const express = require('express')
 const router = require('./router')
@@ -32,6 +32,16 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 app.use(jsonParser)
 app.use(urlencodedParser)
+
+// 引入express-jwt
+var expressJWT = require('express-jwt')
+
+var secretOrPrivateKey = 'hello  BigManing' // 加密token 校验token时要使用
+app.use(expressJWT({
+  secret: secretOrPrivateKey
+}).unless({
+  path: ['/getToken'] // 除了这个地址，其他的URL都需要验证
+}))
 
 app.use(router)
 
