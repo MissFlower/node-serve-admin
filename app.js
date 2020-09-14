@@ -1,37 +1,24 @@
+// 引入express实例
+const express = require('express')
+// 引入http-errors
 const createError = require('http-errors')
+// 引入日志模块
 const logger = require('morgan')
-// 引入express-jwt
-const expressJWT = require('express-jwt')
 // post 参数解析
 const bodyParser = require('body-parser')
-const express = require('express')
+// 导入跨域配置
+const corsConfig = require('./utils/cors')
+// 导入数据库连接文件
+const connect = require('./utils/connect')
+// 引入jwtInstance globalInterception
+import { jwtInstance, globalInterception } from './utils/jwt'
+// 引入路由
 const router = require('./router')
 
 const app = express()
 
-// 引入Mongoose包
-const mongoose = require('mongoose')
-// 指定连接的数据库，不需要存在 当插入第一条数据之后 自动会被创建出来
-mongoose.connect('mongodb://localhost/test', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
-mongoose.connection.on('connected', function() {
-  console.log('mongo connect success')
-})
-
-import { secretOrPrivateKey } from './config'
-
 // 加载跨域模块
-// const cors = require('cors')
-// // 配置跨域模块 允许那个地址跨域访问
-// app.use(cors(
-//   {
-//     origin: ['http://192.168.0.29:5924',
-//       'http://localhost:5924'],
-//     withCredentials: true
-//   }))
-
+app.use(corsConfig)
 // 日志
 app.use(logger('dev'))
 
@@ -46,25 +33,8 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false })
 app.use(jsonParser)
 app.use(urlencodedParser)
 
-// 校验token，获取headers⾥里里的Authorization的token，要写在路由加载之前，静态资源之后
-app.use(expressJWT({
-  secret: secretOrPrivateKey,
-  algorithms: ['HS256'],
-  // 自定义token名称时使用 但 返回客户端的token 不要带 'Bearer '
-  // getToken: function fromHeaderOrQuerystring(req) {
-  //   console.log(req.headers.tk)
-  //   if (req.headers.tk) {
-  //     return req.headers.tk
-  //   } else if (req.query && req.query.token) {
-  //     return req.query.token
-  //   }
-
-  //   return null
-  // },
-  requestProperty: 'auth' // 默认解析结果会赋值在 req.user，也可以通过 requestProperty 来修改
-}).unless({
-  path: ['/login', '/register'] // 除了这个地址，其他的URL都需要验证
-}))
+// 使用jwt中间件(实例)
+app.use(jwtInstance)
 
 // 使用路由
 app.use(router)
@@ -76,29 +46,11 @@ app.use((req, res, next) => {
 })
 
 // error handler
-app.use((err, req, res, next) => {
-  const error = {
-    code: '',
-    message: ''
-  }
+app.use(globalInterception)
 
-  if (typeof (err) === 'string') {
-    error.code = '100009'
-    error.message = err
-    return res.status(400).json(error)
-  }
-
-  if (err.name === 'UnauthorizedError') {
-    error.code = '401'
-    error.message = 'Invalid Token'
-    return res.status(401).json(error)
-  }
-
-  // default to 500 server error
-  error.code = '500'
-  error.message = 'Internal Server Error'
-  return res.status(500).json(error)
-})
+;(async() => {
+  await connect() // 执行连接数据库任务
+})()
 
 app.listen(4000, () => {
   console.log('express is running ...')

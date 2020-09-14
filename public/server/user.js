@@ -1,22 +1,22 @@
 /*
- * @Description:
+ * @Description: 弃用
  * @Version: 0.1.0
  * @Author: AiDongYang
  * @Date: 2020-08-20 10:06:47
  * @LastEditors: AiDongYang
- * @LastEditTime: 2020-09-09 20:54:52
+ * @LastEditTime: 2020-09-14 16:56:51
  */
 // 引入Mongoose包
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 // 指定连接的数据库，不需要存在 当插入第一条数据之后 自动会被创建出来
-mongoose.connect('mongodb://localhost/test', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
-mongoose.connection.on('connected', function() {
-  console.log('mongo connect success')
-})
+// mongoose.connect('mongodb://localhost/test', {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true
+// })
+// mongoose.connection.on('connected', function() {
+//   console.log('mongo connect success')
+// })
 // 设计集合结构(表结构)
 const userSchema = new Schema({
   username: {
