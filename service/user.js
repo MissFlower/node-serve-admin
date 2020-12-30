@@ -26,6 +26,13 @@ class UserService {
       } else {
         // 登录账号
         const result = await userDoc.comparePassword(password, userDoc.password) // 进行密码比对是否一致
+        UserModel.find((err, res) => {
+          if (err) {
+            console.log('查询失败')
+          } else {
+            console.log(res)
+          }
+        })
         return !result
           ? {
             code: '100000',
@@ -69,13 +76,15 @@ class UserService {
         const userInfo = await userEntity.save()
         return {
           code: '000000',
-          _id: userInfo._id,
-          userName: userInfo.userName,
-          gender: userInfo.gender,
-          avatar: userInfo.avatar,
-          mobilePhone: userInfo.mobilePhone,
-          email: userInfo.email,
-          birthday: userInfo.birthday
+          data: {
+            _id: userInfo._id,
+            userName: userInfo.userName,
+            gender: userInfo.gender,
+            avatar: userInfo.avatar,
+            mobilePhone: userInfo.mobilePhone,
+            email: userInfo.email,
+            birthday: userInfo.birthday
+          }
         }
       }
     } catch (error) {

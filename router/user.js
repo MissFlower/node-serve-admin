@@ -28,7 +28,8 @@ userRouter.post('/login', async(request, response, next) => {
   }
   try {
     const args = { username, password }
-    const { code, data } = await userService.loginHandler(args)
+    const res = await userService.loginHandler(args)
+    const { code, data } = res
     response.send(code === '000000'
       ? {
         code: '000000',
@@ -37,7 +38,7 @@ userRouter.post('/login', async(request, response, next) => {
         },
         msg: '登录成功!'
       }
-      : data
+      : res
     )
   } catch (error) {
     console.log(error)
@@ -57,7 +58,8 @@ userRouter.post('/register', async(request, response, next) => {
   }
   try {
     const args = { username, password }
-    const { code, data } = await userService.registerHandler(args)
+    const res = await userService.registerHandler(args)
+    const { code, data } = res
     response.send(code === '000000'
       ? {
         code: '000000',
@@ -66,7 +68,7 @@ userRouter.post('/register', async(request, response, next) => {
         },
         msg: '注册成功!'
       }
-      : data
+      : res
     )
   } catch (error) {
     next(error)
