@@ -14,9 +14,11 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-jwt": "^6.0.0",
+    "fs-extra": "^9.1.0",
     "http-errors": "^1.8.0",
     "mongoose": "^5.10.3",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "multiparty": "^4.2.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.5",

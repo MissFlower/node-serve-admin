@@ -1,3 +1,11 @@
+/*
+ * @Description:
+ * @Version: 0.1.0
+ * @Author: AiDongYang
+ * @Date: 2020-08-20 10:06:47
+ * @LastEditors: AiDongYang
+ * @LastEditTime: 2020-12-31 10:18:21
+ */
 // 引入express实例
 const express = require('express')
 // 引入http-errors
@@ -7,7 +15,7 @@ const logger = require('morgan')
 // post 参数解析
 const bodyParser = require('body-parser')
 // 导入跨域配置
-const corsConfig = require('./utils/cors')
+// const corsConfig = require('./utils/cors')
 // 导入数据库连接文件
 const connect = require('./utils/connect')
 // 引入jwtInstance globalInterception
@@ -18,7 +26,7 @@ const router = require('./router')
 const app = express()
 
 // 加载跨域模块
-app.use(corsConfig)
+// app.use(corsConfig)
 // 日志
 app.use(logger('dev'))
 
@@ -52,6 +60,6 @@ app.use(globalInterception)
   await connect() // 执行连接数据库任务
 })()
 
-app.listen(4000, () => {
+app.listen(5000, () => {
   console.log('express is running ...')
 })

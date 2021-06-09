@@ -4,7 +4,7 @@
  * @Author: AiDongYang
  * @Date: 2020-09-14 11:16:22
  * @LastEditors: AiDongYang
- * @LastEditTime: 2020-09-14 14:23:43
+ * @LastEditTime: 2020-11-05 14:31:45
  */
 
 const expressJWT = require('express-jwt')
@@ -21,7 +21,7 @@ export const createToken = (userInfo) => {
   return 'Bearer ' + jwt.sign(
     { userInfo },
     secret,
-    { expiresIn: 10 }
+    { expiresIn: '1h' }
   )
 }
 

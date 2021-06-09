@@ -2,6 +2,8 @@ module.exports = {
   root: true,
   parserOptions: {
     parser: 'babel-eslint',
+    // ecmaVersion - 默认设置为 3，5（默认）， 你可以使用 6、7、8、9 或 10 来指定你想要使用的 ECMAScript 版本。
+    // 你也可以用使用年份命名的版本号指定为 2015（同 6），2016（同 7），或 2017（同 8）或 2018（同 9）或 2019 (same as 10)
     ecmaVersion: 9, // https://www.cnblogs.com/danker/p/12458659.html 不配置导致箭头函数和async await不能同时使用
     sourceType: 'module'
   },
